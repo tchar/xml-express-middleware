@@ -77,7 +77,7 @@ function transformJson(data, transformJsonKey) {
 
 
 exports.xml = function(options){
-    let rootXmlArrayKey;
+    let rootXmlKey;
     let transformXmlKey = (k) => k;
 
     if (options != null) {
@@ -92,10 +92,10 @@ exports.xml = function(options){
             transformXmlKey = (k) => k;
         }
 
-        if (options.rootXmlArrayKey != null && typeof options.rootXmlArrayKey !== 'string') {
-            throw new Error('Options rootXmlArrayKey property should be a string');
+        if (options.rootXmlKey != null && typeof options.rootXmlKey !== 'string') {
+            throw new Error('Options rootXmlKey property should be a string');
         }
-        rootXmlArrayKey = options.rootXmlArrayKey;
+        rootXmlKey = options.rootXmlKey;
     }
 
     return function (req, res, next) {
@@ -108,10 +108,10 @@ exports.xml = function(options){
                     if (req.headers['user-agent']) {
                         resOptionsclear.escape = true;
                     }
-                    if (rootXmlArrayKey != null && data != null && data.constructor == Array) {
+                    if (rootXmlKey != null && data != null && data.constructor == Array) {
                         let tempData = data;
                         data = {};
-                        data[rootXmlArrayKey] = tempData;
+                        data[rootXmlKey] = tempData;
                     }
                     res.set('Content-Type', 'application/xml; charset=utf-8');
                     getTrueSend(res).apply(res, [xml.apply(null, [transformXml(data, transformXmlKey), resOptionsclear])]);
@@ -129,7 +129,7 @@ exports.xml = function(options){
 
 exports.send = function (options) {
     let sendName = 'send';
-    let rootXmlArrayKey;
+    let rootXmlKey;
     let transformXmlKey = (k) => k;
     let transformJsonKey;
 
@@ -160,10 +160,10 @@ exports.send = function (options) {
             transformJsonKey = null;
         }
 
-        if (options.rootXmlArrayKey != null && typeof options.rootXmlArrayKey !== 'string') {
-            throw new Error('Options rootXmlArrayKey property should be a string');
+        if (options.rootXmlKey != null && typeof options.rootXmlKey !== 'string') {
+            throw new Error('Options rootXmlKey property should be a string');
         }
-        rootXmlArrayKey = options.rootXmlArrayKey;
+        rootXmlKey = options.rootXmlKey;
     }
 
     return function (req, res, next) {
@@ -177,10 +177,10 @@ exports.send = function (options) {
                             resOptionsclear.escape = true;
                         }
 
-                        if (rootXmlArrayKey != null && data != null && data.constructor == Array) {
+                        if (rootXmlKey != null && data != null && data.constructor == Array) {
                             let tempData = data;
                             data = {};
-                            data[rootXmlArrayKey] = tempData;
+                            data[rootXmlKey] = tempData;
                         }
 
                         res.set('Content-Type', 'application/xml; charset=utf-8');
