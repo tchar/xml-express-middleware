@@ -25,14 +25,13 @@ function transformXml(data, transformXmlKey) {
             let singKey = transformXmlKey(pluralize.singular(key));
             let newKey = transformXmlKey(key);
             if (data[key] != null && data[key].constructor == Array) {
+                newKey = pluralize(newKey)
                 resData[newKey] = [];
                 data[key].forEach(d => {
                     let newData = {};
                     newData[singKey] = transform(d);
                     resData[newKey].push(newData);
                 });
-            } else if (typeof data[key] === 'object') {
-                resData[newKey] = transform(data[key]);
             } else {
                 resData[newKey] = transform(data[key]);
             }
@@ -43,7 +42,7 @@ function transformXml(data, transformXmlKey) {
 }
 
 function transformJson(data, transformJsonKey) {
-    
+
     function transform(data){
         if (data == null) {
             return data;
@@ -59,10 +58,8 @@ function transformJson(data, transformJsonKey) {
                 data[key].forEach(d => {
                     resData[newKey].push(transform(d));
                 });
-            } else if (typeof data[key] === 'object') {
-                resData[newKey] = transform(data[key]);
             } else {
-                resData[newKey] = data[key];
+                resData[newKey] = transform(data[key]);
             }
         });
         return resData;
