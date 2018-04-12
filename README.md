@@ -53,7 +53,7 @@ The following options can be passed
 Property | Value | Description
 --- | --- | ---
 transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys 
-rootXmlKey | string, default:null | adds root xml key this is usefull if the equivalent json object is an array. default action does not add anything
+rootXmlKey | string, default:elements | adds root xml key this is usefull if the equivalent json object is an array
 
 So for example the following json response
 ```json
@@ -145,7 +145,7 @@ The options are a superset of the options from the xml middleware
 Key | Value | Description
 --- | --- | ---
 transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys
-rootXmlKey | string, default:null | adds a root xml to the xml tree, nothing if it is null
+rootXmlKey | string, default:elements | adds a root xml to the xml tree
 transformJsonKeys | string:[decamelize|camelize|none], default:'none' | transform the json properties
 sendName | string, default: 'send' | the name of the function to be added to res. default is send meaning will override res' default send method.
 

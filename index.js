@@ -105,10 +105,10 @@ exports.xml = function(options){
                     if (req.headers['user-agent']) {
                         resOptionsclear.escape = true;
                     }
-                    if (rootXmlKey != null && data != null && data.constructor == Array) {
+                    if (data != null && data.constructor == Array) {
                         let tempData = data;
                         data = {};
-                        data[rootXmlKey] = tempData;
+                        data[rootXmlKey || 'elements'] = tempData;
                     }
                     res.set('Content-Type', 'application/xml; charset=utf-8');
                     getTrueSend(res).apply(res, [xml.apply(null, [transformXml(data, transformXmlKey), resOptionsclear])]);
@@ -174,10 +174,10 @@ exports.send = function (options) {
                             resOptionsclear.escape = true;
                         }
 
-                        if (rootXmlKey != null && data != null && data.constructor == Array) {
+                        if (data != null && data.constructor == Array) {
                             let tempData = data;
                             data = {};
-                            data[rootXmlKey] = tempData;
+                            data[rootXmlKey || 'elements'] = tempData;
                         }
 
                         res.set('Content-Type', 'application/xml; charset=utf-8');
