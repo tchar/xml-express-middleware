@@ -25,7 +25,7 @@ function transformXml(data, transformXmlKey) {
             let singKey = transformXmlKey(pluralize.singular(key));
             let newKey = transformXmlKey(key);
             if (data[key] != null && data[key].constructor == Array) {
-                newKey = pluralize(newKey)
+                newKey = pluralize(newKey);
                 resData[newKey] = [];
                 data[key].forEach(d => {
                     let newData = {};
@@ -78,15 +78,20 @@ exports.xml = function(options){
     let transformXmlKey = (k) => k;
 
     if (options != null) {
-        if (options.transformXmlKeys != null && typeof options.transformXmlKeys !== 'string') {
-            throw new Error('Options transformXmlKeys property should be a string');
-        }
+
         if (options.transformXmlKeys === 'camelize') {
             transformXmlKey = camelize;
         } else if (options.transformXmlKeys === 'decamelize') {
             transformXmlKey = decamelize;
         } else if (options.transformXmlKeys === 'none') {
             transformXmlKey = (k) => k;
+        }
+        else if (typeof options.transformXmlKeys === 'string') {
+            throw new Error('Options transformXmlKeys string allowed values are camelize, decamelize and none');
+        } else if (typeof options.transformXmlKeys === 'function'){
+            transformXmlKey = options.transformXmlKeys;
+        } else if (options.transformXmlKeys != null){
+            throw new Error('Options transformXmlKeys property should be a string or a function');
         }
 
         if (options.rootXmlKey != null && typeof options.rootXmlKey !== 'string') {
@@ -135,9 +140,7 @@ exports.send = function (options) {
             throw new Error('Options sendName property should be a string');
         }
         sendName = options.sendName || sendName;
-        if (options.transformXmlKeys != null && typeof options.transformXmlKeys !== 'string') {
-            throw new Error('Options transformXmlKeys property should be a string');
-        }
+        
         if (options.transformXmlKeys === 'camelize') {
             transformXmlKey = camelize;
         } else if (options.transformXmlKeys === 'decamelize') {
@@ -145,16 +148,26 @@ exports.send = function (options) {
         } else if (options.transformXmlKeys === 'none') {
             transformXmlKey = (k) => k;
         }
-
-        if (options.transformJsonKeys != null && typeof options.transformJsonKeys !== 'string') {
-            throw new Error('Options transformJsonKeys property should be a string');
+        else if (typeof options.transformXmlKeys === 'string') {
+            throw new Error('Options transformXmlKeys string allowed values are camelize, decamelize and none');
+        } else if (typeof options.transformXmlKeys === 'function') {
+            transformXmlKey = options.transformXmlKeys;
+        } else if (options.transformXmlKeys != null) {
+            throw new Error('Options transformXmlKeys property should be a string or a function');
         }
+
         if (options.transformJsonKeys === 'camelize') {
             transformJsonKey = camelize;
         } else if (options.transformJsonKeys === 'decamelize') {
             transformJsonKey = decamelize;
         } else if (options.transformJsonKeys === 'none') {
             transformJsonKey = null;
+        } else if (typeof options.transformJsonKeys === 'string') {
+            throw new Error('Options transformJsonKeys string allowed values are camelize, decamelize and none');
+        } else if (typeof options.transformJsonKeys === 'function') {
+            transformXmlKey = options.transformJsonKeys;
+        } else if(options.transformJsonKeys != null){
+            throw new Error('Options transformJsonKeys property should be a string or a function');
         }
 
         if (options.rootXmlKey != null && typeof options.rootXmlKey !== 'string') {
