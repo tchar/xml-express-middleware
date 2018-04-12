@@ -49,6 +49,7 @@ In the above example if you perform an xml request on http://localhost:8080/ you
 
 ### Options
 The following options can be passed
+
 Property | Value | Description
 --- | --- | ---
 transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys 
@@ -138,6 +139,7 @@ whereas if `Accept: application/xml` header is set the response will be (with no
 
 ### Options
 The options are a superset of the options from the xml middleware
+
 Key | Value | Description
 --- | --- | ---
 transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys
