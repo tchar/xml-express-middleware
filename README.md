@@ -86,6 +86,8 @@ will produce a response
 
 **Note: undefined and null values will be transformed to '' in the xml in order to avoid values of having text value of undefined. So if a value with the respecive keyname "key" will result in the <key/> xml version of it**
 
+**Note: If the json is an array then you should use the option rootXmlKey to add a root to your xml otherwise the keys will appear as <0> etc**
+
 ## send
 This middleware by default replaces the send function of express' res.send method with the equivalent send version which sends xml responses
 when the header `Accept: application/xml` is set. So you can use res.send() and let the function handle the response type when the `Accept` header is present
