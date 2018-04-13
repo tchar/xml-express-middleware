@@ -6,7 +6,7 @@ Run
 npm install xml-express-middleware --save
 ```
 
-This module exposes two middleware functions
+This module exposes two middlewares
 
 ## xml
 This middleware adds an xml function to res to use with res.xml
@@ -96,6 +96,8 @@ It can also be defined through optons the send name to be assigned to res if you
 ### Usage
 ```javascript
 const app = require('express')();
+const sendMiddleware = require('xml-express-middleware');
+//or
 const sendMiddleware = require('xml-express-middleware').send;
 const options = {
     // Define your options

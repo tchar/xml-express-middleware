@@ -1,6 +1,6 @@
 const app = require('express')();
 const xmlMiddleware = require('../index').xml;
-const sendMiddleware = require('../index').send;
+const sendMiddleware = require('../index');
 const assert = require('assert');
 const requestProm = require('request-promise');
 
