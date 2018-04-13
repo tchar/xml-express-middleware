@@ -86,7 +86,7 @@ will produce a response
 
 **Note: undefined and null values will be transformed to '' in the xml in order to avoid values of having text value of undefined. So if a value with the respecive keyname "key" will result in the <key/> xml version of it**
 
-**Note: If the json is an array then you should use the option rootXmlKey to add a root to your xml otherwise the keys will appear as <0> etc**
+**Note: If the json is an array then you should use the option rootXmlKey to add a root to your xml otherwise the keys will have a default root element named 'elements'**
 
 ## send
 This middleware by default replaces the send function of express' res.send method with the equivalent send version which sends xml responses
