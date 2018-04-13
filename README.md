@@ -52,7 +52,7 @@ The following options can be passed
 
 Property | Value | Description
 --- | --- | ---
-transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys 
+transformXmlKeys | string:['decamelize','camelize','none'], default:'none' | transform the xml keys 
 rootXmlKey | string, default:elements | adds root xml key when the json is an array
 
 So for example the following json response
@@ -144,9 +144,9 @@ The options are a superset of the options from the xml middleware
 
 Key | Value | Description
 --- | --- | ---
-transformXmlKeys | string:[decamelize|camelize|none], default:'none' | transform the xml keys
+transformXmlKeys | string:['decamelize','camelize','none'], default:'none' | transform the xml keys
 rootXmlKey | string, default:elements | adds a root xml to the xml tree only when the json is an array
-transformJsonKeys | string:[decamelize|camelize|none], default:'none' | transform the json properties
+transformJsonKeys | string:['decamelize','camelize','none'], default:'none' | transform the json properties
 sendName | string, default: 'send' | the name of the function to be added to res. default is send meaning will override res' default send method.
 
 ## Tests
