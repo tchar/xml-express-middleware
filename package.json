@@ -1,6 +1,6 @@
 {
   "name": "xml-express-middleware",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An xml middleware to send xml responses from json",
   "main": "index.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "request-promise": "^4.2.2"
   },
   "directories": {
-    "tests": "tests"
+    "lib": "lib",
+    "test": "test"
   }
 }
