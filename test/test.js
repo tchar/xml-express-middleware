@@ -28,7 +28,7 @@ app.get('/a', function(req, res){
     res.xml(aResponse);
 });
 
-app.get('/b', sendMiddleware({transformXmlKeys: 'decamelize'}), function(req, res){
+app.get('/b', sendMiddleware({ transformXmlKeys: 'decamelize', xmlAcceptHeaders: new RegExp(/\/xml/) }), function(req, res){
     res.send(bResponse);
 });
 
@@ -71,7 +71,7 @@ describe('xml-express-middleware', function(){
             uri: 'http://localhost:8095/b',
             method: 'get',
             headers: {
-                'Accept': 'application/xml'
+                'Accept': 'asdasd/xml'
             }
         }).then(data => {
             const compareData = '<?xml version="1.0" encoding="utf-8"?><some_other_property>someOtherValue1</some_other_property><some_other_properties><some_other_property>someOtherValue3</some_other_property><some_other_property>someOtherValue5</some_other_property></some_other_properties>';
