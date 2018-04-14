@@ -84,13 +84,16 @@ will produce a response
 </some_elements>
 ```
 
-**Note: undefined and null values will be transformed to '' in the xml in order to avoid values of having text value of undefined. So if a value with the respecive keyname "key" will result in the <key/> xml version of it**
+**Note: undefined and null values will be transformed to '' in the xml in order to avoid having undefined values. So a value with the respecive keyname "key" will result in the <key/> xml version of it. In the relevant json response, null and undefined values are not transformed.**
 
-**Note: If the json is an array then you should use the option rootXmlKey to add a root to your xml otherwise the keys will have a default root element named 'elements'**
+**Note: If the json is an array then you should use the option rootXmlKey to add a root to your xml, otherwise the keys will have a default root element named 'elements'. You can use this middleware in a specific express path instead of app.use(xmlMiddleware()), in order to have different root keys if need be.**
 
 ## send
-This middleware by default replaces the send function of express' res.send method with the equivalent send version which sends xml responses
-when the header `Accept: application/xml` is set. So you can use res.send() and let the function handle the response type when the `Accept` header is present
+This middleware by default replaces the send function of express' res.send method with the equivalent send version which sends an xml response
+when the header proper `Accept` header is set (default `application/xml`, `text/xml`).
+
+In this way you can use res.send() and let the function handle the response type. If there is no header and the data to be sent is an object, then res.json is used otherwise the original epxress' res.send is used.
+
 It can also be defined through optons the send name to be assigned to res if you don't want to override res's default send function.
 
 ### Usage
@@ -114,7 +117,7 @@ app.get('/', function(req, res, next){
 
 app.listen(8080);
 ```
-will produce a response if `Accept` headers are not set
+if `Accept` headers are not set the response will be:
 ```json
 {
     "someProperty": "someValue",
@@ -125,7 +128,7 @@ will produce a response if `Accept` headers are not set
 }
 ```
 
-whereas if `Accept: application/xml` header is set the response will be (with no options)
+whereas if `Accept: application/xml` or `Accept: application/xml` header is set the response will be (with no options):
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <someProperty>
