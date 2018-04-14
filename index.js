@@ -1,3 +1,6 @@
-const xmlExpressMiddleware = require('./lib/xml_express_middleware');
+const xml = require('./lib/xml');
+const send = require('./lib/send');
 
-module.exports = xmlExpressMiddleware;
+module.exports = send;
+module.exports.send = send;
+module.exports.xml = xml;
