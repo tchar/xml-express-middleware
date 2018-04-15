@@ -1,3 +1,4 @@
+'use strict';
 const app = require('express')();
 const xmlMiddleware = require('../index').xml;
 const sendMiddleware = require('../index');

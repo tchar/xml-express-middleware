@@ -2,6 +2,8 @@
  * Index module
  * @module index
  */
+
+'use strict';
 const xml = require('./lib/xml');
 const send = require('./lib/send');
 
