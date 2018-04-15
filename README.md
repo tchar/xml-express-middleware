@@ -54,6 +54,7 @@ Property | Value | Description
 --- | --- | ---
 transformXmlKeys | string:['decamelize','camelize','none'], default:'none' | transform the xml keys 
 rootXmlKey | string, default:elements | adds root xml key when the json is an array
+noXmlTransform | boolean, default: false | if true does not transform the original json to xml and ignores all other xml related options
 
 So for example the following json response
 ```json
@@ -154,6 +155,7 @@ rootXmlKey | string, default:elements | adds a root xml to the xml tree only whe
 transformJsonKeys | string:['decamelize','camelize','none'], default:'none' | transform the json properties
 sendName | string, default: 'send' | the name of the function to be added to res. default is send meaning will override res' default send method.
 xmlAcceptHeaders | array of strings or RegExp, default ['application/xml', 'text/xml'] | the headers which res.send checks to send a response in xml. You can pass a RegExp instead of an array of strings.
+noXmlTransform | boolean, default: false | if true does not transform the original json to xml and ignores all other xml related options
 
 ## Tests
 You can run the tests using npm test, which spawns an express app listening to the port 8095 and performs the tests.
