@@ -1,6 +1,6 @@
 {
   "name": "xml-express-middleware-testing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An xml middleware to send xml responses from json",
   "main": "./lib/dist/index.js",
   "types": "./lib/dist/index.d.ts",
