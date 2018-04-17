@@ -1,10 +1,13 @@
 {
-  "name": "xml-express-middleware",
-  "version": "0.0.11",
+  "name": "xml-express-middleware-testing",
+  "version": "0.0.1",
   "description": "An xml middleware to send xml responses from json",
-  "main": "index.js",
+  "main": "./lib/dist/index.js",
+  "types": "./lib/dist/index.d.ts",
   "scripts": {
-    "test": "mocha ./test/*.js -t 100000 --reporter spec"
+    "build": "tsc",
+    "test": "./node_modules/.bin/mocha ./tests/*.js -t 100000 --reporter spec",
+    "prepublishOnly": "tsc"
   },
   "repository": {
     "type": "git",
@@ -33,10 +36,8 @@
     "express": "^4.16.3",
     "mocha": "^5.0.5",
     "request": "^2.85.0",
-    "request-promise": "^4.2.2"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
+    "request-promise": "^4.2.2",
+    "@types/mocha": "^5.0.0",
+    "@types/node": "^8.10.8"
   }
 }
