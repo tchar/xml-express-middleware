@@ -46,6 +46,9 @@ function xml(options: {
  * Export send as send
  * Export xml as xml
  */
+export default send;
+export {send};
+export {xml};
 module.exports = send;
 module.exports.send = send;
 module.exports.xml = xml;
