@@ -1,0 +1,3 @@
+lib/ts/*
+.eslintrc.js
+tsconfig.json
