@@ -7,8 +7,13 @@
 'use strict';
 import SendMiddleware from './middlewares/send';
 import XmlMiddleware from './middlewares/xml';
+import ExpressMiddleware from './middlewares/middleware';
 
-
+/**
+ * This function wraps the SendMiddleware.middleware method
+ * @param {object} options - the options for send middleware
+ * @return {function} - the middleware function 
+ */
 function send(options: {
         sendName: string,
         noXmlTransform: boolean,
@@ -17,17 +22,22 @@ function send(options: {
         rootXmlKey: string,
         xmlAcceptHeaders: any,
     }): any {
-    let sendMiddleware = new SendMiddleware(options);
+    let sendMiddleware: ExpressMiddleware = new SendMiddleware(options);
     return sendMiddleware.middleware();
 }
 
+/**
+ * This function wraps the XmlMiddleware.middleware method
+ * @param {object} options - the options for xml middleware
+ * @return {function} - the middleware function 
+ */
 function xml(options: {
         noXmlTransform: boolean,
         rootXmlKey: string,
         transformXmlKeys: any,
         xmlName: string
     }): any{
-    let xmlMiddleware = new XmlMiddleware(options);
+    let xmlMiddleware: ExpressMiddleware = new XmlMiddleware(options);
     return xmlMiddleware.middleware();
 }
 

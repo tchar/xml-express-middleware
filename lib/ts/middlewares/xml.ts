@@ -86,11 +86,9 @@ class XmlMiddleware implements ExpressMiddleware{
     }
 
     /**
-     * This function accepts an options object and returns
-     * an express middleware function with res, req, next signature
+     * This function returns an express middleware function with res, req, next signature
      * that assigns to res.xml a function that transforms a javascript
      * object to xml.
-     * @param {object} options 
      * @returns {function} an express middleware function
      */
     public middleware(): any{
@@ -125,7 +123,10 @@ class XmlMiddleware implements ExpressMiddleware{
         };
     }
 
-
+    /**
+     * Constructor
+     * @param options - the middleware options
+     */
     constructor(options: {
         noXmlTransform: boolean,
         rootXmlKey: string,

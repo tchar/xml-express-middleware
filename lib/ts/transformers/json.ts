@@ -9,7 +9,7 @@ import Transformer from './transformer';
 
 class JsonTransformer implements Transformer {
 
-    private options: {transformJsonKeys: any};
+    private transformOptions: {transformJsonKeys: any};
 
     private _transform(data: any): any{
         if (data == null) {
@@ -20,7 +20,7 @@ class JsonTransformer implements Transformer {
         }
         let resData = {};
         Object.keys(data).forEach(key => {
-            let newKey = this.options.transformJsonKeys(key);
+            let newKey = this.transformOptions.transformJsonKeys(key);
             if (typeof data[key] === 'object' && data[key].constructor == Array) {
                 resData[newKey] = [];
                 data[key].forEach(d => {
@@ -40,17 +40,21 @@ class JsonTransformer implements Transformer {
      * @param {object} options - options to transformer
      * @returns {object} - The transformed object
      */
-    public transform(data: object): object {
+    public transform(data: object, options: object = null): object {
 
-        if (this.options.transformJsonKeys == null) {
+        if (this.transformOptions.transformJsonKeys == null) {
             return data;
         } else {
             return this._transform(data);
         }
     }
 
-    constructor(options: {transformJsonKeys: any}){
-        this.options = options;
+    /**
+     * The constructor
+     * @param {object} options - The default transformer options
+     */
+    constructor(transformOptions: {transformJsonKeys: any}){
+        this.transformOptions = transformOptions;
     }
 }
 

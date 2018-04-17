@@ -5,8 +5,8 @@
  */
 
 'use strict';
-const camelize = require('camelize');
-const decamelize = require('decamelize');
+import * as Camelize from 'camelize';
+import * as Decamelize from 'decamelize';
 
 import ExpressMiddleware from './middleware';
 import Transformer from '../transformers/transformer';
@@ -63,9 +63,9 @@ class SendMiddleware implements ExpressMiddleware {
             }
 
             if (options.transformXmlKeys === 'camelize') {
-                options.transformXmlKeys = camelize;
+                options.transformXmlKeys = Camelize;
             } else if (options.transformXmlKeys === 'decamelize') {
-                options.transformXmlKeys = decamelize;
+                options.transformXmlKeys = Decamelize;
             } else if (options.transformXmlKeys === 'none') {
                 options.transformXmlKeys = (k) => k;
             }
@@ -80,9 +80,9 @@ class SendMiddleware implements ExpressMiddleware {
             }
 
             if (options.transformJsonKeys === 'camelize') {
-                options.transformJsonKeys = camelize;
+                options.transformJsonKeys = Camelize;
             } else if (options.transformJsonKeys === 'decamelize') {
-                options.transformJsonKeys = decamelize;
+                options.transformJsonKeys = Decamelize;
             } else if (options.transformJsonKeys === 'none') {
                 options.transformJsonKeys = null;
             } else if (typeof options.transformJsonKeys === 'string') {
@@ -152,21 +152,18 @@ class SendMiddleware implements ExpressMiddleware {
     }
 
     /**
-     * This function accepts an options object and returns
-     * an express middleware function with res, req, next signature
-     * that assigns to res[sendName], (default res.send) a function that 
+     * This function returns an express middleware function with res, req, next 
+     * signature that assigns to res[sendName], (default res.send) a function that 
      * checks the headers of the request and based on xmlAcceptHeaders
      * (default application/xml, text/xml) returns a response in json,
      * xml, or text.
-     * @param {object} options 
-     * @returns {function} an express middleware function
+     * @returns {function} - an express middleware function
      */
     public middleware(): any {
         
         let _this = this;
 
         return function (req: any, res: any, next: any): void {
-
 
             try {
                 let trueSend = res.send;
@@ -201,6 +198,10 @@ class SendMiddleware implements ExpressMiddleware {
         };
     }
 
+    /**
+     * Constructor
+     * @param options - the middleware options
+     */
     constructor(options: {
         sendName: string,
         noXmlTransform: boolean,

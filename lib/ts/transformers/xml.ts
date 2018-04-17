@@ -58,6 +58,10 @@ class XmlTransformer implements Transformer {
         return Jsontoxml(this._transform(data), jsonToXmlOptions);
     }
 
+    /**
+     * Constructor
+     * @param {object} transformOptions - the default transformer options
+     */
     constructor(transformOptions: { noXmlTransform: boolean, transformXmlKeys: any }){
         this.transformOptions = transformOptions;
     }
